@@ -1,0 +1,29 @@
+{
+	"newRootUrl": "forums.example.com",
+
+	"startWith": [
+		"/forums/topics/",
+		"/forums/forums/",
+		"/forums/users/"
+	],
+
+	"paths": {
+			"/forums/ubb/login":"/login",
+			"/forums/ubb/newuser":"/register",
+			"/forums/ubbthreads/newuser": "/register",
+			"/forums/ubbthreads/login": "/login",
+
+			"/forums/ubbthreads.php/topics/123": "/topic/321",
+			"/forums/ubbthreads.php/topics/456": "/topic/654",
+			"/forums/ubbthreads.php/topics/789": "/topic/987",
+
+			"/forums/ubbthreads.php/users/123": "/user/321",
+			"/forums/ubbthreads.php/users/456": "/user/654",
+			"/forums/ubbthreads.php/users/789": "/user/987",
+
+			"/forums/ubbthreads.php/forums/123": "/category/321",
+			"/forums/ubbthreads.php/forums/456": "/category/654",
+			"/forums/ubbthreads.php/forums/789": "/category/987"
+
+	}
+}

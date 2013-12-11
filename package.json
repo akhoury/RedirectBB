@@ -1,0 +1,35 @@
+{
+    "name": "RedirectBB",
+    "version": "0.0.1",
+    "description": "Redirect your BB thread urls to another after a migration, using a map",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/akhoury/RedirectBB"
+    },
+    "keywords": [
+        "nodebb",
+        "plugin",
+        "migrator",
+        "convertor",
+        "ubb",
+        "redirect",
+        "rewrite"
+    ],
+    "author": {
+        "name": "akhoury",
+        "email": "bentael@gmail.com"
+    },
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/akhoury/RedirectBB/issues"
+    },
+    "dependencies": {
+        "express": "~3.4.4",
+        "fs-extra": "~0.8.1",
+        "underscore": "~1.5.2",
+        "optimist": "~0.6.0"
+    }
+}
