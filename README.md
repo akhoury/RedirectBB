@@ -36,6 +36,57 @@ node redirect.js  -v
 
 ```
 
+### Map
+
+I can't neatly comment a json file, so I will here
+```
+ {
+ 		// are you redirecting to a new URL, no? leave it blank
+         "newRootUrl": "forums.example.com",
+
+          // the redirect logic will pathname.indexOF() the values in the startWith array
+          // if there is match, it will look for the next '/' i.e. /forums/topics/123/blablabla
+          // it will append the /value/ to the startWith[i] matched value, i.e. /forums/topics/123 then try to match it in the paths Map
+          // if there isnt a next '/' it will append the whole post fix, /forums/topics/123
+          // if there is no statWith match at all, it would still try to find a match in the map, probably one for the hardcoded ones below
+		  // if that doesn't work, it will redirect to the newRootUrl or '/' if there isn't one set
+
+         "startWith": [
+                 "/forums/topics/",
+                 "/forums/forums/",
+                 "/forums/users/"
+         ],
+
+         "paths": {
+
+						 // these are basically the large portion
+						 // with dynamic values
+
+                         "/forums/ubbthreads.php/topics/123": "/topic/321",
+                         "/forums/ubbthreads.php/topics/456": "/topic/654",
+                         "/forums/ubbthreads.php/topics/789": "/topic/987",
+
+                         "/forums/ubbthreads.php/users/123": "/user/321",
+                         "/forums/ubbthreads.php/users/456": "/user/654",
+                         "/forums/ubbthreads.php/users/789": "/user/987",
+
+                         "/forums/ubbthreads.php/forums/123": "/category/321",
+                         "/forums/ubbthreads.php/forums/456": "/category/654",
+                         "/forums/ubbthreads.php/forums/789": "/category/987"
+
+
+                        // you might have a few to hardcode
+
+                         "/forums/ubb/login":"/login",
+                         "/forums/ubb/newuser":"/register",
+                         "/forums/ubbthreads/newuser": "/register",
+                         "/forums/ubbthreads/login": "/login",
+
+
+         }
+ }
+```
+
 ### Required Nginx setup
 
 see [nginx.example.com](nginx.example.com) to view an example on the setup I needed,

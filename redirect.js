@@ -80,7 +80,7 @@ var hasProtocol = Map.newRootUrl.match(/^http(?:s)?:\/\//);
 app.get('*', function(req, res) {
 	var newRoute = getNewRoute(req._parsedUrl.pathname);
 	var query = req._parsedUrl.query;
-	var redirectTo = (hasProtocol ? Map.newRootUrl : req.protocol + '://' + Map.newRootUrl)
+	var redirectTo = (Map.newRootUrl ? hasProtocol ? Map.newRootUrl : req.protocol + '://' + Map.newRootUrl : '')
 		+ (newRoute || '')
 		+ (query ? '?' + query : '');
 
