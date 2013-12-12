@@ -85,7 +85,6 @@ app.get('*', function(req, res) {
 		+ (query ? '?' + query : '');
 
 	log(req.url + ' --> ' + redirectTo);
-	res.end(redirectTo);
 	res.redirect(301, redirectTo);
 });
 
