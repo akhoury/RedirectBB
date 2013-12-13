@@ -1,6 +1,6 @@
 # this is an http setup for nginx server using ubbredirector
 
-upstream ubbredirector {
+upstream RedirectBB {
     server 127.0.0.1:3000;
 }
 
@@ -15,7 +15,7 @@ server {
 
 	# this must precede the location /forums right below it
 	# basically tells nginx to serve the forums/images as they are, static
-	# you can get fancy here with the caching as this directory, after migration, will not never really get updated
+	# you can get fancy here with the caching as this directory, after migration, since it will not never really get updated
 	# unless of course, you use it for something else
 	location /forums/images {
                 # you can turn that off if you want
@@ -28,12 +28,12 @@ server {
 	# will be handled by ubbredirector
 	# since I had UBB installed in /forums pre-migration
 	location /forums {
-		root /home/admin/code/ubb-redirector;
+		root /var/www/RedirectBB;
 	      	proxy_set_header X-Real-IP $remote_addr;
       		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     		proxy_set_header Host $http_host;
       		proxy_set_header X-NginX-Proxy true;
-     		proxy_pass http://ubbredirector/;
+     		proxy_pass http://RedirectBB/;
       		proxy_redirect off;
       	}
 
