@@ -95,7 +95,7 @@ basically the old UBB forum lived under example.com/forums, so I have a location
 
 #### Note:
 
-Notice in [nginx.example.com] how I kept the `/forums/images` pointing to the same dir, and not being handled by this redirector,
+Notice in [nginx.example.com](nginx.example.com) how I kept the `/forums/images` pointing to the same dir, and not being handled by this redirector,
 since I wanted the old users to keep their uploaded images and avatar working.
 
 ### Migrator?
