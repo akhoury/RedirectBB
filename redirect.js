@@ -17,13 +17,14 @@ var express = require('express'),
 		}
 	},
 
-	log = argv.v || argv.verbose ? function(msg){ console.log('[bb-redirector] ' + msg ); } : function(){},
+	log = argv.v || argv.verbose ? function(msg){ console.log('[RedirectBB] ' + msg ); } : function(){},
 
 	getNewRoute = function(route) {
 		var newRoute = '', match = false;
-
+		route = stripTrailingSlash(route).replace(/([^:]\/)\/+/g, "$1");
+		log('attempting to match a startWith route to: ' + route);
 		for (var i = 0; i < Map.startWith.length; i++) {
-			var startWith = Map.oldPrefix + Map.startWith[i];
+			var startWith = Map.startWith[i];
 			var idx = route.indexOf(startWith);
 			if (idx >= 0) {
 				newRoute += appendToNewRoute(route, startWith, idx);
@@ -37,11 +38,14 @@ var express = require('express'),
 			newRoute += pathsMatch(route);
 		}
 
+		if (!newRoute)
+			log('no map match with: ' + route);
+
 		return newRoute;
 	},
 
 	pathsMatch = function (route){
-		route =  stripTrailingSlash(route);
+		log('attempting to match: ' + route);
 		return Map.paths[route] || '';
 	},
 
@@ -75,9 +79,11 @@ if (fs.existsSync(mapFile)) {
 }
 
 var app = express();
+var url = require('url');
 
 var hasProtocol = Map.newRootUrl.match(/^http(?:s)?:\/\//);
 app.get('*', function(req, res) {
+	log('req.originalUrl: ' + req.originalUrl);
 	var newRoute = getNewRoute(req._parsedUrl.pathname);
 	var query = req._parsedUrl.query;
 	var redirectTo = (Map.newRootUrl ? hasProtocol ? Map.newRootUrl : req.protocol + '://' + Map.newRootUrl : '')
