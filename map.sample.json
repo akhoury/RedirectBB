@@ -2,9 +2,9 @@
 	"newRootUrl": "forums.example.com",
 
 	"startWith": [
-		"/forums/topics/",
-		"/forums/forums/",
-		"/forums/users/"
+		"/forums/ubbthreads.php/topics/",
+		"/forums/ubbthreads.php/forums/",
+		"/forums/ubbthreads.php/users/"
 	],
 
 	"paths": {
