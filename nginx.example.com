@@ -33,8 +33,12 @@ server {
       		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     		proxy_set_header Host $http_host;
       		proxy_set_header X-NginX-Proxy true;
-     		
+     		                
+     		# since my map includes the /forums path in the begining of each path
+                # i must remove the trailing slash in the proxy_pass derivative
+                # http://stackoverflow.com/a/5834665/493756 see comment on this answer of Hugo Josefson
 		proxy_pass http://RedirectBB;
+      		
       		proxy_redirect off;
       	}
 
